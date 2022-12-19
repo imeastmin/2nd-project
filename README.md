@@ -34,7 +34,7 @@ HTTP 프로토콜을 핸들링 하는 과정에서 네트워크 지식에 대한
 <strong>* 1번 리팩토링이 끝날 시 진행</strong>
 
 3. 암호화<br>
-개발자로써 양보할 수 없는 보안, SHA256, Salt 암호화를 진행하고 JWT를 적용하여 Stateless한 검증 구현
+개발자로써 양보할 수 없는 보안, SHA256, Salt 암호화를 진행하고 JWT를 적용하여 Stateless한 검증 구현<br>
 <strong>* 리팩토링 과정에 포함</strong>
 
 4. 쿼리<br>
