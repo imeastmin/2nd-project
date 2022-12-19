@@ -14,6 +14,7 @@ Swagger: http://localhost/swagger-ui/index.html
 2. 프론트에 해당하는 USER, ADMIN 프로젝트는 8080 Port를 사용합니다.
 3. 백엔드 프로젝트는 80 Port로 접속합니다.
 4. URL Mapping을 하지 않았기 때문에 IP + Port + Diretory Path로 접근하면 됩니다.
+5. yml 파일은 개인정보가 포함되어 있어 삭제되어 있습니다.
 
 - ## 구현
 1. HTTP 4가지 Method(GET, POST, PUT, DELETE)를 사용하여 Controller를 작성했습니다.
