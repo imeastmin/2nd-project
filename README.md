@@ -1,43 +1,68 @@
 # 2차 프로젝트 노르딕워킹
-기간: 2022. 11. 28 ~ 2022. 12. 16<br>
-아키텍쳐: RESTful<br>
-Swagger: http://localhost/swagger-ui/index.html
+* 기간: 2022. 11. 28 ~ 2022. 12. 16<br>
+* 아키텍쳐: 클라이언트 서버 간 API 통신 방식<br>
+* Swagger: http://localhost/swagger-ui/index.html
+> <img width="1312" alt="image" src="https://user-images.githubusercontent.com/51441191/210045224-076d2faf-cdd2-415e-8075-6cdc1628cc0f.png">
+
 <br><br>
 
-- ## 프로젝트 후 느낀점
-아키텍쳐 설계대로 개발을 한 것이 이번이 처음이었습니다. 모든 것이 생소하고 많은 부족함을 느꼈지만 동시에 어떤 것들을 공부해나가야 할지 배울 수 있었던 시간이었습니다.
-개발에 대한 공부를 시작하고 복붙하는 코드보다 내가 이해하고 남들을 이해시킬 수 있는 코드를 작성하는 것에 초점을 두고 공부해왔기 때문에 프로젝트를 진행하면서 개선해야 할 점을 아래에 정리해보았습니다. 
-아래 작성한 것 외에도 여러 어노테이션, TDD 등 공부해야할 것이 넘치지만 꾸준히 해다보면 큰 숲 정도는 읽을 수 있지 않을까요?
-
-- ## 실행 방법
-1. 총 3개의 프로젝트(USER, ADMIN, BACK-END)로 구성되어 있습니다.
-2. 프론트에 해당하는 USER, ADMIN 프로젝트는 8080 Port를 사용합니다.
-3. 백엔드 프로젝트는 80 Port로 접속합니다.
-4. URL Mapping을 하지 않았기 때문에 IP + Port + Diretory Path로 접근하면 됩니다.
-5. yml 파일은 개인정보가 포함되어 있어 삭제되어 있습니다.
+- ## ISSUE
+1. JACKSON NAME RULE에 따른 Property 이름 변경
+2. 클라이언트 전송 데이터를 받아오는 애노테이션의 차이점(@RequestParam, @PathVariable ...)
+3. HTTP 프로토콜 보안 CORS 대처
+4. REST API 방식에서의 파일 업로드 처리
+> _자세한 트러블슈팅_<br>
+> https://eastmin.notion.site/3-Record-8da9e60b938143d2a666dcd4b23ae78c
 
 - ## 구현
-1. HTTP 4가지 Method(GET, POST, PUT, DELETE)를 사용하여 Controller를 작성했습니다.
-2. Front-End 프로젝트에서는 Ajax로 서버와 통신하였습니다.
-3. 원하는 데이터 출력을 위해 Join을 활용했습니다.
-4. 느려지는 쿼리 속도로 Index를 활용했습니다.
+1. HTTP 프로토콜 4가지 Method로 클라이언트와 서버 간의 통신
+> <img width="549" alt="image" src="https://user-images.githubusercontent.com/51441191/210046490-88b9171a-cad2-41ba-ab87-2939028ed725.png">
+> <img width="549" alt="image" src="https://user-images.githubusercontent.com/51441191/210046586-a249bb86-8ddd-4e7a-a243-a4a17adf477a.png">
+
+2. Front-End 프로젝트에서는 Ajax로 서버와 통신
+> <img width="549" alt="image" src="https://user-images.githubusercontent.com/51441191/210046669-eb7087b7-35c5-4bd6-9c91-4f7be0a67364.png">
+
+3. 원하는 데이터 출력을 위해 Join을 활용
+> <img width="549" alt="image" src="https://user-images.githubusercontent.com/51441191/210046744-6fccd452-453a-47b3-b90f-0093366539e3.png">
+
+4. DataBase Index를 활용<br><br>
+5. 동아리 소개 및 기원 페이지 CRUD
+> <img width="879" alt="image" src="https://user-images.githubusercontent.com/51441191/210046857-f2a7bdff-a3de-44bc-971f-c8109b7ea79f.png">
+> <img width="879" alt="image" src="https://user-images.githubusercontent.com/51441191/210046910-04d7ae61-88b3-4818-a0c4-fec0831e6fed.png"><br>
+> * 수정 시 이미 업로드 되어 있는 사진을 1개씩 삭제 처리할 수 있음.<br>
+
+6. 게시판 기능 + 다중 파일 업로드 처리
+> <img width="1413" alt="image" src="https://user-images.githubusercontent.com/51441191/210047159-e01bb66b-2744-4c97-be88-e5a24ee5bd9e.png"><br>
+> * 클라이언트가 업로드 한 사진으로 썸네일 설정<br><br>
+> <img width="1092" alt="image" src="https://user-images.githubusercontent.com/51441191/210047357-3317df9a-cef4-4a3f-bff2-0508b7cd83c4.png"><br>
+> * 작성 기능 - 댓글허용 여부에 따라 댓글 사용 여부를 설정할 수 있음.<br><br>
+> <img width="1174" alt="image" src="https://user-images.githubusercontent.com/51441191/210047577-0e9078be-8f9a-4186-bcfc-d82db354d9d0.png"><br>
+> * 본인이 작성한 글만 수정 및 삭제 버튼이 활성화 됨.<br>
+> * 댓글 설정을 하지 않으면 사진과 같은 메시지 출력.<br><br>
+> <img width="724" alt="image" src="https://user-images.githubusercontent.com/51441191/210047757-6da7d6d3-d642-4e8d-aa77-a6f4d770a797.png"><br>
+> * 수정 기능<br><br>
+> <img width="1120" alt="image" src="https://user-images.githubusercontent.com/51441191/210047828-5c82fdb1-f2f6-4f50-8518-069c0ce71c71.png"><br>
+> * 댓글 허용을 하게 되면 사진과 같은 댓글 작성 창이 출력됨.<br><br>
+> <img width="857" alt="image" src="https://user-images.githubusercontent.com/51441191/210047890-c17ad2ae-b045-477c-a314-fa75523bd375.png"><br>
+> * 댓글을 작성한 본인에게만 수정 삭제 버튼이 활성화 됨.<br><br>
+> <img width="857" alt="image" src="https://user-images.githubusercontent.com/51441191/210047976-73cbda8d-7a69-44bf-a606-8a357761a754.png"><br>
+> * 수정 버튼을 누르게 되면 수정 텍스트 창이 출력 됨.<br><br>
+> <img width="857" alt="image" src="https://user-images.githubusercontent.com/51441191/210048026-26c5dfeb-4e0e-45f5-91a7-eb60039eaf5c.png"><br>
+> * 수정한 결과<br><br>
+> <img width="857" alt="image" src="https://user-images.githubusercontent.com/51441191/210048050-a71c6b14-3dba-4eea-9a1e-d66b73dbd97d.png"><br>
+> * 삭제 확인 Confirm에서 확인을 누르게 되면 정상적으로 삭제<br>
+> * 삭제한 결과<br><br>
+
+7. 검색기능 - SORT 정렬
+> <img width="857" alt="image" src="https://user-images.githubusercontent.com/51441191/210048412-c350338d-8983-4a47-b8e7-97bdc4cdfa53.png"><br>
+> * 4개의 검색 타입<br><br>
+> <img width="1141" alt="image" src="https://user-images.githubusercontent.com/51441191/210048512-6202de31-e437-40f4-8355-6d7c895d9498.png"><br>
+> * 검색결과<br><br>
+> <img width="996" alt="image" src="https://user-images.githubusercontent.com/51441191/210048570-a2e0850e-04d9-47c2-8b31-7f7ca1495b47.png"><br>
+> * 검색 결과에서 페이지 이동<br><br>
 
 - ## 개선해야 할 사항
-1. HTTP Status handling<br>
-아직 Code 200에 대한 Response만 구현되어 있는 상태.<br>
-HTTP 프로토콜을 핸들링 하는 과정에서 네트워크 지식에 대한 바닥이 드러났다...<br>
-<strong>* 12월 말일까지 리팩토링 진행하기</strong>
-
-2. API Doc 작성 및 설계<br>
-구현을 하다보니 프로젝트 시작 시에 기초적인 API 설계를 하는 것이 우선이라는 생각이 들었다. 이번 프로젝트에서 REST API 설계를 처음 겪어봤기 때문에 
-설계에 대한 개념이 부족하여 시작 시에 API 문서를 작성했더라도 수정해야 할 부분이 굉장히 많이 생겼을 것이다(Head-Payload의 개념 등...). 
-이번 프로젝트에서 Front - Back의 통신 방식을 알게 됐고 간단하게 나마 API 문서 작성해보기.<br>
-<strong>* 1번 리팩토링이 끝날 시 진행</strong>
-
-3. 암호화<br>
-개발자로써 양보할 수 없는 보안, SHA256, Salt 암호화를 진행하고 JWT를 적용하여 Stateless한 검증 구현<br>
-<strong>* 리팩토링 과정에 포함</strong>
-
-4. 쿼리<br>
-SELECT 쿼리문 작성 시 속도에 관한 문제 해결, 인덱스 뿐만 아니라 어떤 쿼리문이 속도 개선에 효율적인지 공부해야 한다.<br>
-<strong>* 리팩토링 과정에 포함</strong>
+  - Hateoas 적용하여 RESTful하게 개선
+  - Exception Handling
+  - Security 적용
+  - FTP 서버 구축 
